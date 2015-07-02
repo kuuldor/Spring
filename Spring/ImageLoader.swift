@@ -40,7 +40,7 @@ public class ImageLoader {
             var data: NSData? = self.cache.objectForKey(urlString) as? NSData
             
             if let goodData = data {
-                let image = UIImage(data: goodData)
+                let image = UIImage(data: goodData, scale: UIScreen.mainScreen().scale)
                 dispatch_async(dispatch_get_main_queue(), {() in
                     completionHandler(image: image, url: urlString)
                 })
