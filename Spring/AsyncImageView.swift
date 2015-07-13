@@ -36,11 +36,11 @@ public class AsyncImageView: UIImageView {
                 ImageLoader.sharedLoader.imageForUrl(urlString) { [weak self] image, url in
                     if image != nil {
                         if let strongSelf = self {
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                if strongSelf.url?.absoluteString == url {
+                            if strongSelf.url?.absoluteString == url {
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                     strongSelf.image = image
-                                }
-                            })
+                                })
+                            }
                         }
                     }
                 }
