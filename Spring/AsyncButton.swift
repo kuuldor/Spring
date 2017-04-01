@@ -36,7 +36,7 @@ public class AsyncButton: UIButton {
         if let urlString = url?.absoluteString {
             ImageLoader.sharedLoader.imageForUrl(urlString: urlString) { [weak self] image, url in
                 
-                if let strongSelf = self {
+                if image != nil, let strongSelf = self {
                     
                     DispatchQueue.main.async(execute: { () -> Void in
                         if strongSelf.imageURL[state.rawValue]?.absoluteString == url {

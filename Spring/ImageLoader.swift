@@ -55,7 +55,7 @@ public class ImageLoader {
             }
             
             if let goodData = data {
-                let image = UIImage(data: goodData as Data)
+                let image = UIImage(data: goodData as Data, scale: UIScreen.main.scale)
                 DispatchQueue.main.async(execute: {() in
                     completionHandler(image, urlString)
                 })

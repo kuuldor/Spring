@@ -24,14 +24,17 @@ import UIKit
 
 public class AsyncImageView: UIImageView {
 
-    public var placeholderImage : UIImage?
+    public var placeholderImage : UIImage? {
+        didSet {
+            self.image = self.placeholderImage
+        }
+    }
 
     public var url : NSURL? {
         didSet {
-            self.image = placeholderImage
             if let urlString = url?.absoluteString {
                 ImageLoader.sharedLoader.imageForUrl(urlString: urlString) { [weak self] image, url in
-                    if let strongSelf = self {
+                    if image != nil, let strongSelf = self {
                         DispatchQueue.main.async(execute: { () -> Void in
                             if strongSelf.url?.absoluteString == url {
                                 strongSelf.image = image ?? strongSelf.placeholderImage
