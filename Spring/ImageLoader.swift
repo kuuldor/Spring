@@ -35,6 +35,10 @@ public class ImageLoader {
         return Static.instance
     }
     
+    public func removeCache(for url: String) {
+        self.cache.removeObject(forKey: url as NSString)
+    }
+    
     public func imageForUrl(urlString: String, completionHandler: @escaping(_ image: UIImage?, _ url: String) -> ()) {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async { 
             var data: NSData?
